@@ -1,0 +1,15 @@
+Alternative Approaches:
+
+Initial idea:
+Making the number a string -> not constant space
+
+Second idea:
+Reverting the number:
+    -> Problem > int.Max, arithmetic overflow
+
+Third idea: (good idea and constant space)
+Reverting HALF of the number
+    -> because half of the number WILL BE THE OTHER SIDE OF THE NUMBER THIS WORKS
+    -> for example: 1221 -> take 21 and flip it now 21 == 12
+        -> Time Complexity: O(log10(n))
+        -> Space Complexity: O(1)

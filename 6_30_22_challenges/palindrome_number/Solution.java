@@ -27,12 +27,24 @@ class Solution {
     }
 
 
+    public static boolean betterIsPalindrome(int x){
+        if(x < 0 || x % 10 == 0 && x != 0){
+            return false;
+        }
+        int revertedNumber = 0;
+        while(x > revertedNumber){
+            revertedNumber = revertedNumber * 10 + x % 10; // get the digit and then multply by 10 for positioning
+            x /= 10;
+        }
+        return x == revertedNumber || x == revertedNumber/10;
+    }
 
     public static void main(String[] args){
         // [false, true, true, false, true]
         int[] tests = new int[]{10, 100, 212, 323, 4445, 83922938};
         for(int i = 0; i < tests.length; i++){
             System.out.println(tests[i] + " = " + isPalindrome(tests[i]));
+            System.out.println(tests[i] + " = " + betterIsPalindrome(tests[i]));
         }
     }
 }
