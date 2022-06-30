@@ -17,6 +17,9 @@
     D             500
     M             1000
 
+
+
+    I WOULD MAKE THIS MORE EASILY READ BY MODULARIZING MY CODE
  */
 
 class Solution {
