@@ -25,10 +25,10 @@ class Solution {
         int i = 0;
         int total = 0;
         while(i < lengthS){
-            System.out.println("Current Iteration: " + i);
-            System.out.println("Current Total: " + total);
-            System.out.println("Total Length = " + lengthS);
-            System.out.println("Current Character: " + s.charAt(i));
+            // System.out.println("Current Iteration: " + i);
+            // System.out.println("Current Total: " + total);
+            // System.out.println("Total Length = " + lengthS);
+            // System.out.println("Current Character: " + s.charAt(i));
             if(s.charAt(i) == 'V'){
                 total += 5;
                 i += 1;
@@ -56,19 +56,19 @@ class Solution {
             // handle I
             if(s.charAt(i) == 'I'){
                 if(i + 1 < lengthS){
-                    System.out.println(i + " = " + s.charAt(i));
+                    // System.out.println(i + " = " + s.charAt(i));
                     if(s.charAt(i + 1) ==  'V'){
-                        System.out.println("+4");
+                        // System.out.println("+4");
                         total += 4;
                         i += 2;
                         continue;
                     } else if(s.charAt(i + 1) == 'X'){
-                        System.out.println("+9");
+                        // System.out.println("+9");
                         total += 9;
                         i += 2;
                         continue;
                     } else {
-                        System.out.println("in else +1");
+                        // System.out.println("in else +1");
                         total += 1;
                     }    
                 } else {
@@ -80,17 +80,17 @@ class Solution {
             if(s.charAt(i) == 'X'){
                 if(i + 1 < lengthS){
                     if(s.charAt(i + 1) ==  'L'){
-                        System.out.println("+40");
+                        // System.out.println("+40");
                         total += 40;
                         i += 2;
                         continue;
                     } else if(s.charAt(i + 1) == 'C'){
-                        System.out.println("+90");
+                        // System.out.println("+90");
                         total += 90;
                         i += 2;
                         continue;
                     } else {
-                        System.out.println("in else +10");
+                        // System.out.println("in else +10");
                         total += 10;
                     }    
                 } else {
@@ -102,17 +102,17 @@ class Solution {
             if(s.charAt(i) == 'C'){
                 if(i + 1 < lengthS){
                     if(s.charAt(i + 1) == 'D'){
-                        System.out.println("+400");
+                        // System.out.println("+400");
                         total += 400;
                         i += 2;
                         continue;
                     } else if(s.charAt(i + 1) == 'M'){
-                        System.out.println("+900");
+                        // System.out.println("+900");
                         total += 900;
                         i += 2;
                         continue;
                     } else {
-                        System.out.println("in else +100");
+                        // System.out.println("in else +100");
                         total += 100;
                     }    
                 } else {
@@ -121,7 +121,7 @@ class Solution {
             }
 
             i += 1;
-            System.out.println();
+            // System.out.println();
         }
         return total;
     }
