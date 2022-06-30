@@ -27,8 +27,8 @@ class Solution {
         while(i < lengthS){
             System.out.println("Current Iteration: " + i);
             System.out.println("Current Total: " + total);
+            System.out.println("Total Length = " + lengthS);
             System.out.println("Current Character: " + s.charAt(i));
-            System.out.println();
             if(s.charAt(i) == 'V'){
                 total += 5;
                 i += 1;
@@ -55,18 +55,20 @@ class Solution {
 
             // handle I
             if(s.charAt(i) == 'I'){
-                if(i + 1 < s.length()){
+                if(i + 1 < lengthS){
                     System.out.println(i + " = " + s.charAt(i));
                     if(s.charAt(i + 1) ==  'V'){
-                        System.out.println("in IV block");
-                        System.out.println(i + " = " + s.charAt(i) + s.charAt(i + 1));
+                        System.out.println("+4");
                         total += 4;
-                        i += 1;
-                        System.out.println("total = " + total);
+                        i += 2;
+                        continue;
                     } else if(s.charAt(i + 1) == 'X'){
+                        System.out.println("+9");
                         total += 9;
-                        i += 1;
+                        i += 2;
+                        continue;
                     } else {
+                        System.out.println("in else +1");
                         total += 1;
                     }    
                 } else {
@@ -76,17 +78,20 @@ class Solution {
 
             // handle X
             if(s.charAt(i) == 'X'){
-                if(i + 1 < s.length()){
-                    System.out.println(i + " = " + s.charAt(i));
+                if(i + 1 < lengthS){
                     if(s.charAt(i + 1) ==  'L'){
+                        System.out.println("+40");
                         total += 40;
-                        i += 1;
+                        i += 2;
+                        continue;
                     } else if(s.charAt(i + 1) == 'C'){
-                        System.out.println("found a C");
+                        System.out.println("+90");
                         total += 90;
-                        i += 1;
+                        i += 2;
+                        continue;
                     } else {
-                        total += 1;
+                        System.out.println("in else +10");
+                        total += 10;
                     }    
                 } else {
                     total += 10;
@@ -94,32 +99,37 @@ class Solution {
             }
 
             // handle C
-            // if(s.charAt(i) == 'C'){
-            //     if(i + 1 < s.length()){
-            //         System.out.println(i + " = " + s.charAt(i));
-            //         if(s.charAt(i + 1) ==  'D'){
-            //             total += 400;
-            //             i += 1;
-            //         } else if(s.charAt(i + 1) == 'M'){
-            //             total += 900;
-            //             i += 1;
-            //         } else {
-            //             total += 1;
-            //         }    
-            //     } else {
-            //         total += 100;
-            //     }
-            // }
+            if(s.charAt(i) == 'C'){
+                if(i + 1 < lengthS){
+                    if(s.charAt(i + 1) == 'D'){
+                        System.out.println("+400");
+                        total += 400;
+                        i += 2;
+                        continue;
+                    } else if(s.charAt(i + 1) == 'M'){
+                        System.out.println("+900");
+                        total += 900;
+                        i += 2;
+                        continue;
+                    } else {
+                        System.out.println("in else +100");
+                        total += 100;
+                    }    
+                } else {
+                    total += 100;
+                }
+            }
 
             i += 1;
+            System.out.println();
         }
         return total;
     }
 
     public static void main(String[] args){
-        // 3, 58, 1994
-        // String[] romanTests = new String[]{"III", "LVIII", "MCMXCIV"};
-        String[] romanTests = new String[]{"MCMXCIV"};
+        // 3, 58, 1994, 34
+        String[] romanTests = new String[]{"III", "LVIII", "MCMXCIV", "XXXIV"};
+        // String[] romanTests = new String[]{"MCMXCIV"};
         for(int i = 0; i < romanTests.length; i++){
             System.out.println();
             System.out.println(romanTests[i] + " = " + romanToInt(romanTests[i]));
