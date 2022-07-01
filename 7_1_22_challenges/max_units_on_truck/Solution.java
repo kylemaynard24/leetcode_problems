@@ -32,14 +32,22 @@ class Solution {
         int [][] orderedUnitSize = orderByUnitSize(boxTypes);
         int totalUnits = 0;
         // System.out.println("after orderByUnitSize");
+
+        System.out.println("Ordered Units");
+        for(int i = 0; i < orderedUnitSize.length; i++){
+            System.out.println("[" + orderedUnitSize[i][0] + " " + orderedUnitSize[i][1]+ "]");
+        }
+        System.out.println("End of Ordered Units");
         int i = 0;
-        while(truckSize > 0 && i < orderedUnitSize.length){
+        while(i < orderedUnitSize.length){
             System.out.println("i = " + i);
-            while(orderedUnitSize[i][0] > 0){
+            
+            while(orderedUnitSize[i][0] > 0 && truckSize > 0){
                 if(truckSize <= 0) break;
                 // System.out.println("Adding: " + orderedUnitSize[i][1]);
-                // System.out.println("Truck Size: " + truckSize);
+                System.out.println("Truck Size: " + truckSize);
                 totalUnits += orderedUnitSize[i][1];
+                System.out.println("Looking at orderedUnitSize[i][1] = " + orderedUnitSize[i][1]);
                 orderedUnitSize[i][0] -= 1;
                 truckSize -= 1;
                 // System.out.println(orderedUnitSize[i][0]);
@@ -56,6 +64,10 @@ class Solution {
             unitSizes[i] = boxTypes[i][1];
         }
         // order unit sizes
+        // this sort method only works in one-dimensional
+        // how can you extend it to 2-d arrays
+
+        // cancel ^ only have to get the total of boxes with that unit size
         for(int i = 0; i < unitSizes.length; i++){
             for(int j = 0; j < unitSizes.length - 1; j++){
                 if(unitSizes[j] < unitSizes[j+1]){
@@ -88,16 +100,20 @@ class Solution {
 
     public static void main(String[] args){
         // output here: 8
-        int[][] oneBoxTypes = new int[][] {{1, 3}, {2, 2}, {3, 1}};
-        int oneTruckSize = 4;
+        // int[][] oneBoxTypes = new int[][] {{1, 3}, {2, 2}, {3, 1}};
+        // int oneTruckSize = 4;
         int[][] twoBoxTypes = new int[][] {{2,1}, {4,4}, {3, 1}, {4, 1}, {2,4}, {3,4}, {1,3}, {4, 3}, {5, 3}, {5, 3}};
+        // in order not working
         int twoTruckSize = 13;
         // * boxTypes = [[5, 10], [2, 5], [4, 7], [3, 9]] trucksize = 10
+        // output = 91
         int[][] threeBoxTypes = new int[][] {{5, 10}, {2, 5}, {4, 7}, {3,9}};
         int threeTruckSize = 10;
+
         
-        System.out.println("Test one: " + maximumUnits(oneBoxTypes, oneTruckSize));
+    
+        // System.out.println("Test one: " + maximumUnits(oneBoxTypes, oneTruckSize));
         System.out.println("Test two: " + maximumUnits(twoBoxTypes, twoTruckSize));
-        System.out.println("Test two: " + maximumUnits(threeBoxTypes, threeTruckSize));
+        // System.out.println("Test two: " + maximumUnits(threeBoxTypes, threeTruckSize));
     }
 }
