@@ -1,3 +1,8 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import javax.swing.SizeSequence;
+
 /**
  * 
  * Input: [[1,3], [2,2], [3, 1]], trucksize = 4
@@ -29,74 +34,69 @@
 
 class Solution {
     public static int maximumUnits(int[][] boxTypes, int truckSize){
-        int [][] orderedUnitSize = orderByUnitSize(boxTypes);
-        int totalUnits = 0;
-        // System.out.println("after orderByUnitSize");
-
-        System.out.println("Ordered Units");
-        for(int i = 0; i < orderedUnitSize.length; i++){
-            System.out.println("[" + orderedUnitSize[i][0] + " " + orderedUnitSize[i][1]+ "]");
+        int[][] boxAndSizes = groupBoxes(boxTypes);
+        for(int i = 0; i < boxAndSizes.length; i++){
+            System.out.println("[ " + boxAndSizes[i][0] + "," + boxAndSizes[i][1] + "]");
         }
-        System.out.println("End of Ordered Units");
-        int i = 0;
-        while(i < orderedUnitSize.length){
-            System.out.println("i = " + i);
-            
-            while(orderedUnitSize[i][0] > 0 && truckSize > 0){
-                if(truckSize <= 0) break;
-                // System.out.println("Adding: " + orderedUnitSize[i][1]);
-                System.out.println("Truck Size: " + truckSize);
-                totalUnits += orderedUnitSize[i][1];
-                System.out.println("Looking at orderedUnitSize[i][1] = " + orderedUnitSize[i][1]);
-                orderedUnitSize[i][0] -= 1;
-                truckSize -= 1;
-                // System.out.println(orderedUnitSize[i][0]);
-            }   
-            i++;
-        }
-        return totalUnits;
+        return -1;    
     }
 
-    public static int[][] orderByUnitSize(int[][] boxTypes){
-        // get unit sizes
-        int[] unitSizes = new int[boxTypes.length];
+    // grouping method:
+    /**
+     * Group all boxes with same unit sizes (aggregate the total amount of boxes)
+     */
+
+    public static int[][] groupBoxes(int[][] boxTypes){
+        HashMap<Integer, Integer> uniqueSizes = new HashMap<Integer, Integer>();
+        // key == unit size, value = number of boxes
+        // hashmap containing the each unique unit size with the number of boxes of that unique unit size
         for(int i = 0; i < boxTypes.length; i++){
-            unitSizes[i] = boxTypes[i][1];
+            boolean found = false;
+            int currentAdd = boxTypes[i][1];
+            for(int j = 0; j < uniqueSizes.size(); j++){
+                // if(currentAdd == uniqueSizes.get()){
+                if(uniqueSizes.containsKey(currentAdd)){
+                    found = true;
+                }
+            }
+            // aggregation
+            if(!found){
+                uniqueSizes.put(currentAdd, boxTypes[i][0]);
+            } else{
+                uniqueSizes.put(currentAdd, uniqueSizes.get(currentAdd) + boxTypes[i][0]);
+            }   
         }
-        // order unit sizes
-        // this sort method only works in one-dimensional
-        // how can you extend it to 2-d arrays
-
-        // cancel ^ only have to get the total of boxes with that unit size
-        for(int i = 0; i < unitSizes.length; i++){
-            for(int j = 0; j < unitSizes.length - 1; j++){
-                if(unitSizes[j] < unitSizes[j+1]){
-                    int temp = unitSizes[j];
-                    unitSizes[j] = unitSizes[j+1];
-                    unitSizes[j+1] = temp;
+        // create a nested array of the hashmap with the number of boxes to the unit size in nonincreasing order
+        // int[] sizesToOrder = (int) uniqueSizes.keySet().toArray();
+        int[] sizesToOrder = new int[uniqueSizes.keySet().size()];
+        
+        // List<String> keys = new ArrayList<>(uniqueSizes.keySet());
+        for(int i = 0; i < uniqueSizes.keySet().size(); i++){
+            // fix this
+            // sizesToOrder[i] = uniqueSizes
+        }
+        // sort the sizesToOrder:
+        for(int i = 0; i < sizesToOrder.length; i++){
+            for(int j = i; j < sizesToOrder.length; j++){
+                if(sizesToOrder[j] < sizesToOrder[j+1]){
+                    int temp = sizesToOrder[j];
+                    sizesToOrder[j] = sizesToOrder[j+1];
+                    sizesToOrder[j+1] = temp;
                 }
             }
         }
 
-        // check that they are in order:
-        // System.out.println("Printing unitSizes");
-        for(int i = 0; i < unitSizes.length; i++){
-            // System.out.println(unitSizes[i]);
+        // reach back into uniqueSizes and pull value of key create new array for each [uniqueSizes.get(sizesToOrder(i)), sizesToOrder[i]] -> [number_of_boxes, UnitSize]
+        int[][] result = new int[sizesToOrder.length][2];
+        for(int i = 0; i < sizesToOrder.length; i++){
+            result[i] = new int[] {uniqueSizes.get(i), sizesToOrder[i]};
         }
-
-        // create new nested array with sizes in order
-        int[][] newBoxTypes = new int[unitSizes.length][2];
-        for(int i = 0; i < unitSizes.length; i++){
-            for(int j = 0; j < unitSizes.length; j++){
-                if(unitSizes[i] == boxTypes[j][1]){
-                    newBoxTypes[i] = boxTypes[j];
-                }
-            }
-        }
-
-        // return
-        return newBoxTypes;
+        
+        // [number_of_boxes, UnitSize] -> return this
+        return result;
     }
+
+
 
     public static void main(String[] args){
         // output here: 8
