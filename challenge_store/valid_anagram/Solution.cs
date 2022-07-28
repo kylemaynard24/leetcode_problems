@@ -36,5 +36,11 @@ public class Solution {
 
     static void Main(string[] args){
         System.Console.WriteLine("Hello World");
+        string s_one = "anagram";
+        string t_one = "nagaram";
+        string s_two = "rat";
+        string t_two = "car";
+        System.Console.WriteLine(IsAnagram(s_one, t_one)); // true
+        System.Console.WriteLine(IsAnagram(s_two, t_two)); // false
     }
 }
