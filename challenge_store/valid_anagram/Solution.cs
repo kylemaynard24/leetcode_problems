@@ -30,12 +30,12 @@ SDLC:
 
 
 public class Solution {
-    public bool IsAnagram(string s, string t) {
+    public static bool IsAnagram(string s, string t) {
         return false;   
     }
 
     static void Main(string[] args){
-        System.Console.WriteLine("Hello World");
+        
         string s_one = "anagram";
         string t_one = "nagaram";
         string s_two = "rat";
