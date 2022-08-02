@@ -26,13 +26,53 @@ SDLC:
 
     mcs -> compile program
     mono .exe -> run program
+
+Time: O(n^2)
+Space: O(1)
+
+iterate through drop letters from s until empty
+if not empty return false 
+else true 
+
+Time: O(n)
+Space: O(n)
+
+hashmap:
+frequency counter of s
+iterate through t and until all values of keys == 0
 */
 
 
+    // public static bool IsAnagram(string s, string t) {
+    //     if(s.Length != t.Length) return false;
+    //     for(int i = 0; i < t.Length; i++){
+    //         for(int j = 0; j < s.Length; j++){
+    //             if(s[j] == t[i]){
+    //                 s = removeChar(s, j);
+    //             }
+    //         }
+    //     }
+    //     if(s.Length > 0){
+    //         return false;
+    //     }
+    //     return true;   
+    // }
+
+    // public static string removeChar(string s, int idx){
+    //     string result = "";
+    //     for(int i = 0; i < s.Length; i++){
+    //         if(i == idx) continue;
+    //         else{
+    //             s += s[i];
+    //             i += 1;
+    //         }
+    //     }
+    //     return result;
+    // }
+
+
 public class Solution {
-    public static bool IsAnagram(string s, string t) {
-        return false;   
-    }
+
 
     static void Main(string[] args){
         

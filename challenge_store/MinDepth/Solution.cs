@@ -1,7 +1,3 @@
-/*
-See if both trees are the same tree
-*/
-
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -14,6 +10,10 @@ See if both trees are the same tree
  *         this.right = right;
  *     }
  * }
+ */
+
+ /*
+    Calculate the Minimum Depth of the tree
  */
 
   public class TreeNode {
@@ -29,20 +29,15 @@ See if both trees are the same tree
 
 
 public class Solution {
-    public static bool IsSameTree(TreeNode p, TreeNode q) {
-        return false;
+    public static int MinDepth(TreeNode root) {
+        return -1;        
     }
 
     static void Main(string[] args){
         System.Console.WriteLine("Hello World");
-        TreeNode testOneA = new TreeNode(1, new TreeNode(2), new TreeNode(3));
-        TreeNode testOneB = new TreeNode(1, new TreeNode(2), new TreeNode(3));
-        System.Console.WriteLine(IsSameTree(testOneA, testOneB)); // true
+        TreeNode testOne = new TreeNode(3, new TreeNode(9), new TreeNode(20, new TreeNode(15), new TreeNode(7)));
 
-        TreeNode testTwoA = new TreeNode(1, new TreeNode(2), null);
-        TreeNode testTwoB = new TreeNode(1, new TreeNode(2), null);
-        System.Console.WriteLine(IsSameTree(testTwoA, testTwoB)); // true
 
-        System.Console.WriteLine(IsSameTree(testOneA, testTwoB)); // false
+        System.Console.WriteLine(MinDepth(testOne)); // 2
     }
 }
